@@ -1,2 +1,3 @@
+size of tree 4
 Binary Search Tree
 5 10 20 60 
