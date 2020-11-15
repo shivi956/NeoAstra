@@ -5,12 +5,14 @@ typedef int T;
 class AVL 
 { 
 public:
-  struct Elem{	  
+  struct Elem{
+  	  
 	struct Elem *left, *right; 
     KEY key;
 	T data;
 	int height;  
     bool rightThread; 
+    Elem():left(0), right(0), height(-1), rightThread(false) {}
 };
 int size;
 int check;
@@ -22,6 +24,14 @@ bool insert(Elem *& root, const KEY &key, const T &data, Elem *lastLeft);
 //void destructCode(Elem *& p); defined below
 void doubleRotateRight(Elem *& node);
 void doubleRotateLeft(Elem *& node);
+
+int Size(Elem* node)  
+{  
+    if (node == NULL)  
+        return 0;  
+    else
+        return(Size(node->left) + 1 + Size(node->right));  
+}  
 	
 int max(int a, int b)  
 {  
@@ -257,9 +267,11 @@ int main()
     obj.insert1(obj._root,70,30,obj.leftMost(obj._root));
     obj.insert1(obj._root,2,30,obj.leftMost(obj._root));
      
-     filebuf fb;
+    filebuf fb;
   	fb.open ("AVL.txt",ios::out);
   	ostream os(&fb);
+  	obj.size= obj.Size(obj._root);
+  	os<<"size of tree "<<obj.size<<endl;
   	os<<"before right threaded AVL Tree\n";
     obj.preOrder(obj._root,os);//checking balance factor;
     obj.createRightThread(obj._root);//turing tree to right threaded;
@@ -268,6 +280,5 @@ int main()
 	obj.destructCode(obj._root); 
 	return 0; 
 } 
-
 
 
