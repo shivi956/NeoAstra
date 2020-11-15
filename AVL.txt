@@ -1,0 +1,11 @@
+before right threaded AVL Tree
+20 -1
+10 0
+2 0
+15 0
+60 1
+30 0
+55 0
+70 0
+After right threaded AVL Tree
+2 10 15 20 30 55 60 70 
