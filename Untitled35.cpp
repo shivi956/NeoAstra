@@ -20,6 +20,14 @@ Elem *_root;
 	bool insert(Elem *& root, const KEY &key, const T &data, Elem *lastLeft);
 	//void printTree(ostream& out, int level, Elem *p) const; defined below
 	//void destructCode(Elem *& p); defined below
+	
+int Size(Elem* node)  
+{  
+    if (node == NULL)  
+        return 0;  
+    else
+        return(Size(node->left) + 1 + Size(node->right));  
+}  
 Elem* leftMost(Elem* root) 
 { 
     while (root != NULL && root->left != NULL) 
@@ -175,16 +183,16 @@ int main()
     obj.insert1(obj._root,10,30,obj.leftMost(obj._root));
     obj.insert1(obj._root,60,30,obj.leftMost(obj._root));
     obj.insert1(obj._root,5,30,obj.leftMost(obj._root));
-     
-    obj.createRightThread(obj._root);
-  	filebuf fb;
+    obj.size= obj.Size(obj._root);
+    filebuf fb;
   	fb.open ("BST.txt",ios::out);
   	ostream os(&fb);
+  	os<<"size of tree "<<obj.size<<endl;
+    obj.createRightThread(obj._root);
   	os<<"Binary Search Tree\n";
     obj.printTree(os,1,obj._root);
 	obj.destructCode(obj._root); 
 	return 0; 
 } 
-
 
 
